@@ -75,7 +75,7 @@ async function seed(){
     await Board.bulkCreate([
         {
             type: "Aged",
-            description: "Used for all aged cheeses such as:  Gouda, Sharp Cheddar and Gruyere.",
+            description: "Used for all aged cheeses such as: Gouda, Sharp Cheddar and Gruyere.",
             rating: 5
         },
         {
