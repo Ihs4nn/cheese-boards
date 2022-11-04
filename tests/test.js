@@ -93,11 +93,19 @@ describe("Tests associations in the databases", () =>{
     test("One Cheese can have many Boards", async () =>{
         const oneBoard = await Board.findByPk(1)
         const twoBoard = await Board.findByPk(2)
-        const threeCheese = await Cheese.findByPk(3)
-        await threeCheese.addBoards([oneBoard, twoBoard])
-        expect(await threeCheese.countBoards()).toBe(2)
+        const oneCheese = await Cheese.findByPk(1)
+        await oneCheese.addBoards([oneBoard, twoBoard])
+        expect(await oneCheese.countBoards()).toBe(2)
     })
 })
+
+describe("Eager Loading tests", () => {
+    test("E.L Tests, a Board can be loaded with its Cheeses", async () => {
+        
+    })
+})
+
+
 
 
 
