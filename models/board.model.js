@@ -11,7 +11,7 @@ Board.init({
         type: DataTypes.STRING
     },
     rating:{
-        type: DataTypes.INTGER
+        type: DataTypes.INTEGER
     }
 },{
     sequelize: db,

@@ -1,5 +1,5 @@
 const { User, Board, Cheese } = require('../models')
-const db = require('./db')
+const db = require('../db/db')
 
 async function seed(){
     await db.sync({
@@ -102,4 +102,6 @@ async function seed(){
 
 }
 
-seed()
+// seed()
+
+module.exports = seed
