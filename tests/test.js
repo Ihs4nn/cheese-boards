@@ -1,13 +1,14 @@
 const db = require("../db/db");
 const seed = require("../db/seed")
 const { Board, Cheese, User } = require("../models");
+const { describe } = require("../models/user.models");
 
 beforeEach(async () => {
     await db.sync({ force: true});
     await seed();
 })
 
-describe ("Tests for Board table", () =>{
+describe ("Tests the Board table", () =>{
     // Testing if the first row is correct type
     test("Tests first row of board is the correct type", async () => {
         const boardFirstRow = await Board.findByPk(1);
@@ -26,7 +27,7 @@ describe ("Tests for Board table", () =>{
 })
 
 
-describe ("Tests for Users", () => {
+describe ("Tests the Users table", () => {
     //Tests the first row of User, checks if their name is correct
     test("Tests if first row of Users has the correct name", async () =>{
         const userFirstName = await User.findByPk(1);
@@ -39,10 +40,19 @@ describe ("Tests for Users", () => {
     })
 })
 
+describe("Tests the Cheeses table", () => {
+    //Testing first row of Cheese db
+    test("Tests if the Cheese title for the first row is correct", async () => {
+        const cheeseFirstTitle = await Cheese.findByPk(1);
+        expect(cheeseFirstTitle.title).toBe("Parmesan")
+    })
+    //Testing seventh row of Cheese db
+    test("Tests if the Cheese description for the seventh row is correct", async () =>{
+        const cheeseSeventhDesc = await Cheese.findByPk(7);
+        expect(cheeseSeventhDesc.description).toBe("It is a semi-hard cheese, pale yellow in color, with a texture that ranges from open, supple, and grainy for younger cheeses to dense, firm, and crystalline for more aged cheeses. When aged, its flavor is nutty, smoky, fruity and sweet, while the younger cheeses are more milky and fresh tasting.")
+    })
+})
 
-//Describe for cheeses
-//Tests if the type is correct
-//Tests if the description is correct
 
 
 //Desvribe for associsations
