@@ -101,7 +101,13 @@ describe("Tests associations in the databases", () =>{
 
 describe("Eager Loading tests", () => {
     test("E.L Tests, a Board can be loaded with its Cheeses", async () => {
-        
+        const theBoard = await Board.findByPk(3)
+        const aCheese = await Cheese.findByPk(9)
+        const aSecondCheese = await Cheese.findByPk(4)
+        await theBoard.addCheeses([aCheese, aSecondCheese])
+
+        const checker = await Board.findByPk(3, {include: Cheese})
+        expect()
     })
 })
 
