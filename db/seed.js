@@ -49,6 +49,57 @@ async function seed(){
         },
     ])
 
+    await User.bulkCreate([
+        {
+            name: "Ihsan",
+            email: "IhsanIsGr8@gmail.com"
+        },
+        {
+            name: "Hannah",
+            email: "HannahIsGr8@gmail.com"
+        },
+        {
+            name: "Bradley",
+            email: "BradleyIsGr8@gmail.com"
+        },
+        {
+            name: "Sasha",
+            email: "SashaIsGr8@gmail.com"
+        },
+        {
+            name: "Esgrid",
+            email: "EsgridIsGr8@gmail.com"
+        }
+    ])
+
+    await Board.bulkCreate([
+        {
+            type: "Aged",
+            description: "Used for all aged cheeses such as:  Gouda, Sharp Cheddar and Gruyere.",
+            rating: 5
+        },
+        {
+            type: "Soft",
+            description: "Used for all soft cheeses such as: Brie, Camembert, Epoisses, Burrata and Fresh Buffalo Mozzarella.",
+            rating: 8
+        },
+        {
+            type: "Crumbly",
+            description: "Used for all crumbly cheeses such as: Goat and Feta Cheese",
+            rating: 4
+        },
+        {
+            type: "Firm",
+            description: "Used for all firm cheeses such as: Parmigiano Reggiano, Manchego and Gouda.",
+            rating: 6
+        },
+        {
+            type: "Smoked",
+            description: "Used for all smoked cheeses such as: Smoked Gouda, Provolone, and Cheddar.",
+            rating: 7
+        }
+    ])
+
 }
 
 seed()
