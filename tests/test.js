@@ -76,7 +76,28 @@ describe("Tests associations in the databases", () =>{
         const secondBoard = await Board.create({type:"Cheese-galore", description: "Used for all cheeses", rating:10})
         const thirdBoard = await Board.create({type:"No-Cheese", description:"For all cheese haters!", rating:11})
         await oneUser.addBoards([firstBoard, secondBoard, thirdBoard])
-        expect(await oneUser.countBoards()).toBe(2)
+        expect(await oneUser.countBoards()).toBe(3)
+    })
+
+    test("One Board can have multiple Cheeses", async () =>{
+        //Associating the variables to the boards
+        const oneBoard = await Board.findByPk(1);
+        //Associating the varible to the cheeses
+        const oneCheese = await Cheese.findByPk(1);
+        const twoCheese = await Cheese.findByPk(2);
+        //Checks if one board can have multiple cheeses and if one cheese can have multiple boards
+        await oneBoard.addCheeses([oneCheese, twoCheese])
+        expect(await oneBoard.countCheeses()).toBe(2)
+    })
+
+    test("One Cheese can have many Boards", async () =>{
+        const oneBoard = await Board.findByPk(1)
+        const twoBoard = await Board.findByPk(2)
+        const threeCheese = await Cheese.findByPk(3)
+        await threeCheese.addBoards([oneBoard, twoBoard])
+        expect(await threeCheese.countBoards()).toBe(2)
     })
 })
+
+
 
