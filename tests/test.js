@@ -26,9 +26,18 @@ describe ("Tests for Board table", () =>{
 })
 
 
-//Describe for users
-//Tests if the email is correct
-//Tests if the name is correct
+describe ("Tests for Users", () => {
+    //Tests the first row of User, checks if their name is correct
+    test("Tests if first row of Users has the correct name", async () =>{
+        const userFirstName = await User.findByPk(1);
+        expect(userFirstName.name).toBe("Ihsan")
+    })
+    //Tests the fourth row of User, checks if their email is correct
+    test("Tests if the fourth row of Users has the correct email", async () => {
+        const userFourthEmail = await User.findByPk(4);
+        expect(userFourthEmail.email).toBe("SashaIsGr8@gmail.com")
+    })
+})
 
 
 //Describe for cheeses
