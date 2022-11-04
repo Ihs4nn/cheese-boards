@@ -68,8 +68,15 @@ describe("Tests the Cheeses table", () => {
 })
 
 
-// //Desvribe for associsations
-// describe("Tests associations in the databases", async () =>{
-//     test
-// })
+//Describe for associsations
+describe("Tests associations in the databases", () =>{
+    test("Multiple boards can be added to a User", async () =>{
+        const oneUser = await User.create({name: "Saffa", email:"SaffaIsGr8@gmail.com"})
+        const firstBoard = await Board.create({type:"Blue Cheese", description:"Used for all Blue cheeses like: Gorgonzola, Stilton and Roquefort", rating:3})
+        const secondBoard = await Board.create({type:"Cheese-galore", description: "Used for all cheeses", rating:10})
+        const thirdBoard = await Board.create({type:"No-Cheese", description:"For all cheese haters!", rating:11})
+        await oneUser.addBoards([firstBoard, secondBoard, thirdBoard])
+        expect(await oneUser.countBoards()).toBe(2)
+    })
+})
 
