@@ -1,7 +1,6 @@
 const db = require("../db/db");
 const seed = require("../db/seed")
 const { Board, Cheese, User } = require("../models");
-const { describe } = require("../models/user.models");
 
 beforeEach(async () => {
     await db.sync({ force: true});
@@ -9,6 +8,11 @@ beforeEach(async () => {
 })
 
 describe ("Tests the Board table", () =>{
+    //Checks if the Board db has correct rows
+    test("Checks if the Board db had correct amount of rows", async () => {
+        const boardRow = await Board.count();
+        expect(boardRow).toBe(5);
+    })
     // Testing if the first row is correct type
     test("Tests first row of board is the correct type", async () => {
         const boardFirstRow = await Board.findByPk(1);
@@ -28,6 +32,11 @@ describe ("Tests the Board table", () =>{
 
 
 describe ("Tests the Users table", () => {
+    //Checks if the Users db has correct rows
+    test("Checks if the Users db had correct amount of rows", async () => {
+        const userRow = await User.count();
+        expect(userRow).toBe(5);
+    })
     //Tests the first row of User, checks if their name is correct
     test("Tests if first row of Users has the correct name", async () =>{
         const userFirstName = await User.findByPk(1);
@@ -41,6 +50,11 @@ describe ("Tests the Users table", () => {
 })
 
 describe("Tests the Cheeses table", () => {
+    //Checks if the Cheese db has correct rows
+    test("Checks if the Cheese db had correct amount of rows", async () => {
+        const cheeseRow = await Cheese.count();
+        expect(cheeseRow).toBe(10);
+    })
     //Testing first row of Cheese db
     test("Tests if the Cheese title for the first row is correct", async () => {
         const cheeseFirstTitle = await Cheese.findByPk(1);
@@ -54,5 +68,8 @@ describe("Tests the Cheeses table", () => {
 })
 
 
+// //Desvribe for associsations
+// describe("Tests associations in the databases", async () =>{
+//     test
+// })
 
-//Desvribe for associsations
