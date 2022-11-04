@@ -111,11 +111,11 @@ describe("Eager Loading tests", () => {
     })
 
     test("Check if whats inside is correct", async () =>{
-        const theBoard = await Board.findByPk(3)
+        const theBoard = await Board.findByPk(2)
         const aCheese = await Cheese.findByPk(9)
         const aSecondCheese = await Cheese.findByPk(4)
         await theBoard.addCheeses([aCheese, aSecondCheese])
-        const checker = await Board.findByPk(3, {include: Cheese})
+        const checker = await Board.findByPk(2, {include: Cheese})
         expect(checker.Cheeses[0]).toHaveProperty("title", aCheese.title)
     })
 
