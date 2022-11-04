@@ -107,8 +107,27 @@ describe("Eager Loading tests", () => {
         await theBoard.addCheeses([aCheese, aSecondCheese])
 
         const checker = await Board.findByPk(3, {include: Cheese})
-        expect()
+        expect(checker).toHaveProperty("Cheeses")
     })
+
+    test("Check if whats inside is correct", async () =>{
+        const theBoard = await Board.findByPk(3)
+        const aCheese = await Cheese.findByPk(9)
+        const aSecondCheese = await Cheese.findByPk(4)
+        await theBoard.addCheeses([aCheese, aSecondCheese])
+        const checker = await Board.findByPk(3, {include: Cheese})
+        expect(checker.Cheeses[0]).toHaveProperty("title", aCheese.title)
+    })
+
+    test("Check if whats inside is correct", async () =>{
+        const theBoard = await Board.findByPk(3)
+        const aCheese = await Cheese.findByPk(9)
+        const aSecondCheese = await Cheese.findByPk(4)
+        await theBoard.addCheeses([aCheese, aSecondCheese])
+        const checker = await Board.findByPk(3, {include: Cheese})
+        expect(checker.Cheeses[1]).toHaveProperty("description", aSecondCheese.description)
+    })
+
 })
 
 
